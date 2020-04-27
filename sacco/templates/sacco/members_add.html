@@ -1,0 +1,131 @@
+{% extends 'sacco/base.html' %}
+{% block content %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{% url 'sacco:dashboard' %}">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active">Add Member</li>
+    </ol>
+    <div class="card-body">
+        <form action="{% url 'sacco:add_members' %}" method="POST"  accept-charset="utf-8">
+            {% csrf_token %}
+            <center><h3>Member Details</h3></center>
+            <div class="form-group">
+                <div class="form-row">                
+                    <div class="col-md-6">
+                        <div class="form-label-group">
+                            <input class ="form-control" type="text" name="firstName" 
+                                id="firstName" placeholder = "First Name" required = "required" autofocus="autofocus"/>
+                            <label for="firstName">First Name</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-label-group">
+                            <input class ="form-control" type="text" name="lastName" 
+                                id="lastName" placeholder = "Last Name" required = "required"/>
+                            <label for="lastName">Last Name</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-label-group">
+                    <input class ="form-control" type="email" name="inputEmail" 
+                        id="inputEmail" placeholder = "Email" required = "required"/>
+                    <label for="inputEmail">Email</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div class="form-label-group">
+                            <input class ="form-control" type="text" name="inputPassword" 
+                                id="inputPassword" placeholder = "Password" required = "required"/>
+                            <label for="inputPassword">Password</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-label-group">
+                            <input class ="form-control" type="number" name="mobileNumber" 
+                                id="mobileNumber" placeholder = "Mobile No" required = "required"/>
+                            <label for="mobileNumber">Mobile No</label>
+                        </div>
+                    </div>
+                </div>
+            </div>                        
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div class="form-label-group">
+                            <select name="gender" class="form-control">
+                                <option selected disabled>Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-label-group">
+                            <select name="memberType" class="form-control">
+                                <option selected disabled>Select Member Type</option>
+                                <option value="Member">Member</option>
+                                <option value="Chairperson">Chairperson</option>
+                                <option value="Vice Chairperson">Vice Chairperson</option>
+                                <option value="Treasurer">Treasurer</option>
+                                <option value="Assistant Treasurer">Assistant Treasurer</option>
+                                <option value="Secretary">Secretary</option>
+                                <option value="Assistant Secretary">Assistant Secretary</option>
+                                <option value="Organizing Secretary">Organizing Secretary</option>
+                                <option value="Time Keeper">Time Keeper</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div class="form-label-group">
+                            <input class ="form-control" type="number" name="idNumber" 
+                                id="idNumber" placeholder = "Id Number" required = "required"/>
+                            <label for="idNumber">Id Number</label>
+                        </div>
+                    </div>
+                </div>
+            </div>                                                
+            <center><h3>Next of Kin Details<h3></center>
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div class="form-label-group">
+                            <input class ="form-control" type="text" name="nextofkinName" 
+                                id="nextofkinName" placeholder = "Next Of Kin Name" required = "required"/>
+                            <label for="nextofkinName">Next Of Kin Name</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-label-group">
+                            <input class ="form-control" type="text" name="nextofkinmobileNumber" 
+                                id="nextofkinmobileNumber" placeholder = "Next Of Kin Mobile No" required = "required"/>
+                            <label for="nextofkinmobileNumber">Next Of Kin Mobile No</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div class="form-label-group">
+                            <input class ="form-control" type="text" name="nextofkinRelationship" 
+                                id="nextofkinRelationship" placeholder = "Next Of Kin Relationship" required = "required"/>
+                            <label for="nextofkinRelationship">Next Of Kin Relationship</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" name="submit" value="Add Member" class="btn btn-primary btn-block"/>
+            </div>
+        </form>
+    </div>
+{% endblock %}  
