@@ -1,0 +1,31 @@
+{% extends 'sacco/base.html' %}
+{% block content %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{% url 'sacco:dashboard' %}">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active">Create Ticket</li>
+    </ol>
+    <div class="card-body">
+        <form action="{% url 'sacco:ticket_create' %}" method="POST"  accept-charset="utf-8">
+            {% csrf_token %}
+            <div class="form-group">
+                <div class="form-label-group">
+                    <input class ="form-control" type="text" name="title" 
+                        id="title" placeholder = "Title" required = "required" />
+                    <label for="title">Title</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-label-group">
+                    <textarea class ="form-control" type="text" name="content" 
+                        id="content" required = "required" 
+                        cols="50" rows="7" style="width:100%;"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" name="submit" value="Send" class="btn btn-primary btn-block"/>
+            </div>        
+        </form>
+    </div>
+{% endblock %}

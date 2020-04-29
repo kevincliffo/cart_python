@@ -1,0 +1,73 @@
+{% extends 'sacco/base.html' %}
+{% block content %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{% url 'sacco:dashboard' %}">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active">Settings</li>
+    </ol>
+    <div class="card-body">
+        <form action="{% url 'sacco:add_setting_to_db' %}" method="POST"  accept-charset="utf-8">
+            {% csrf_token %}
+            <div class="form-group">
+                <div class="form-row">
+                    
+                    <div class="col-md-6">
+                        <div class="form-label-group">
+                            <input class ="form-control" type="text" name="settingKey" 
+                                id="settingKey" placeholder = "Setting Key" required = "required"/>
+                            <label for="settingKey">Setting Key</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-label-group">
+                            <input class ="form-control" type="text" name="settingName" 
+                                id="settingName" placeholder = "Setting Name" required = "required"/>
+                            <label for="settingName">Setting Name</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-label-group">
+                    <input class ="form-control" type="text" name="settingValue" 
+                        id="settingValue" placeholder = "Setting Value" required = "required"/>
+                    <label for="settingValue">Setting Value</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" name="submit" value="Add Setting" class="btn btn-primary btn-block"/>
+            </div>
+        </form>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" border="0" cellpadding="0" id="dataTable" width="100%" cellspacing="0">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Setting Id</th>
+                            <th scope="col">Setting Key</th>
+                            <th scope="col">Setting Name</th>
+                            <th scope="col">Setting Value</th>
+                            {% if loginType == 'user' %}
+                                <th scope="col">Update</th>
+                            {% endif %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for setting in settings %}
+                            <tr>
+                                <th scope="row">{{setting.id}}</th>
+                                <td>{{ setting.SettingKey}}</td>
+                                <td>{{ setting.SettingName}}</td>
+                                <td>{{ setting.SettingValue}}</td>
+                                {% if loginType == 'user' %}
+                                    <td><a href="{% url 'sacco:settings_update' setting.id %}">Update Setting</a></td>
+                                {% endif %}
+                            </tr>                              
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>                        
+    </div>
+{% endblock %}

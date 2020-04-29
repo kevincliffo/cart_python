@@ -78,28 +78,28 @@
                     <a href="{% url 'sacco:add_members' %}" class="nav-link"><i class="fas fa-fw fa-id-card"></i><span> Add Member</span></a>
                 </li>
 				<li class="nav-item">
-                    <a href="" class="nav-link"><i class="fas fa-fw fa-users"></i><span> Next of Kins</span></a>
+                    <a href="{% url 'sacco:next_of_kins' %}" class="nav-link"><i class="fas fa-fw fa-users"></i><span> Next of Kins</span></a>
                 </li>
 				<li class="nav-item">
-                    <a href="" class="nav-link"><i class="fas fa-fw fa-money-bill-alt"></i><span> Contributions</span></a>
+                    <a href="{% url 'sacco:contributions' %}" class="nav-link"><i class="fas fa-fw fa-money-bill-alt"></i><span> Contributions</span></a>
                 </li>
 				<li class="nav-item">
-                    <a href="" class="nav-link"><i class="fas fa-fw fa-money-bill-alt"></i><span> Add Contributions</span></a>
+                    <a href="{% url 'sacco:add_contributions' %}" class="nav-link"><i class="fas fa-fw fa-money-bill-alt"></i><span> Add Contributions</span></a>
 				</li>
 				<li class="nav-item">
-                    <a href="" class="nav-link"><i class="fas fa-fw fa-envelope"></i><span> Tickets</span></a>
+                    <a href="{% url 'sacco:tickets' %}" class="nav-link"><i class="fas fa-fw fa-envelope"></i><span> Tickets</span></a>
 				</li>                              
 				<li class="nav-item">
-                    <a href="" class="nav-link"><i class="fas fa-fw fa-user"></i><span> Profile</span></a>
+                    <a href="{% url 'sacco:own_profile' %}" class="nav-link"><i class="fas fa-fw fa-user"></i><span> Profile</span></a>
                 </li>
 				<li class="nav-item">
-                    <a href="" class="nav-link"><i class="fas fa-fw fa-envelope"></i><span> My Tickets</span></a>
+                    <a href="{% url 'sacco:my_tickets' %}" class="nav-link"><i class="fas fa-fw fa-envelope"></i><span> My Tickets</span></a>
 				</li>                 
 				<li class="nav-item">
-                    <a href="" class="nav-link"><i class="fas fa-fw fa-envelope"></i><span> Create Ticket</span></a>
+                    <a href="{% url 'sacco:ticket_create' %}" class="nav-link"><i class="fas fa-fw fa-envelope"></i><span> Create Ticket</span></a>
 				</li>             
 				<li class="nav-item">
-                    <a href="" class="nav-link"><i class="fas fa-fw fa-cogs"></i><span> Settings</span></a>
+                    <a href="{% url 'sacco:my_settings' %}" class="nav-link"><i class="fas fa-fw fa-cogs"></i><span> Settings</span></a>
 				</li>
 			</ul>
 			<div id="content-wrapper">
@@ -134,10 +134,7 @@
 					<div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
 					<div class="modal-footer">
 						<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-						<?php 
-							$obj = array('class' => 'btn btn-primary');
-							echo anchor('home/logout', 'Logout', $obj);
-						?>
+                        <a href="{% url 'sacco:logout' %}" class="btn btn-primary">Logout</a>
 					</div>
 				</div>
 			</div>

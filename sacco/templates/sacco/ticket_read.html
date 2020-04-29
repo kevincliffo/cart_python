@@ -1,0 +1,33 @@
+{% extends 'sacco/base.html' %}
+{% block content %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{% url 'sacco:dashboard' %}">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active">Read Ticket</li>
+    </ol>
+    <div class="card-body">
+        <?php 
+            echo form_open('tickets/addticket');
+        ?>
+        <div class="form-group">
+            <div class="form-label-group">
+                <input class ="form-control" type="text" name="title" 
+                    id="title" placeholder = "Title" required = "required" readonly value="{{ticket.Title}}"/>
+                <label for="title">Title</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-label-group">
+                <textarea class ="form-control" type="text" name="content" 
+                    id="content" required = "required" readonly value="{{ticket.Title}}" 
+                    cols="50" rows="7" style="width:100%;">{{ticket.Content}}</textarea>
+            </div>
+        </div>
+        {% if logintype == 'user' %}
+            <center><a href="{% url 'sacco:tickets' %}">Back</a></center>
+        {% else %}
+            <center><a href="{% url 'sacco:my_tickets' %}">Back</a></center>
+        {% endif %}
+    </div>
+{% endblock %}

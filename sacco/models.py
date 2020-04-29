@@ -3,6 +3,7 @@ from datetime import datetime
 from django.utils import timezone
 
 class Member(models.Model):
+    name = models.CharField(max_length=100, default="")
     MemberNo = models.CharField(max_length=100, default="")
     FirstName = models.CharField(max_length=100, default="")
     LastName = models.CharField(max_length=100, default="")
@@ -31,22 +32,28 @@ class Member(models.Model):
     NextOfKinFullName = models.CharField(max_length=100, default="")
     NextOfKinMobileNo = models.CharField(max_length=100, default="")
     NextOfKinRelationship = models.CharField(max_length=100, default="")
-    LastLogin = models.DateTimeField(default=datetime.utcnow().replace(tzinfo=timezone.utc))
-    CreatedDate = models.DateTimeField(default=datetime.utcnow().replace(tzinfo=timezone.utc))
+    LastLogin = models.DateTimeField(default=timezone.now)
+    CreatedDate = models.DateTimeField(default=timezone.now)
     
+    class Meta:
+        managed = True
+        db_table = 'sacco_member'
+
     def __str__(self):
         return self.name
 
-class Financial(models.Model):
+class Contribution(models.Model):
     MemberNo = models.ForeignKey(Member, on_delete=models.CASCADE, default='')
     FullName = models.CharField(max_length=100, default="")
-    MobileNo = models.CharField(max_length=100, default="")
-    IdNumber = models.CharField(max_length=100, default="")
-    Salary = models.DecimalField(decimal_places=2, max_digits=10, default=0.0)
-    Deduction = models.DecimalField(decimal_places=2, max_digits=10, default=0.0)
-    Contribution = models.DecimalField(decimal_places=2, max_digits=10, default=0.0)
-    PendingLoans = models.DecimalField(decimal_places=2, max_digits=10, default=0.0)
+    PaymentDate = models.DateTimeField(default=timezone.now)
+    TransactionDate = models.DateTimeField(default=timezone.now)
+    PaymentMonth = models.CharField(max_length=100, default="")
+    Amount = models.DecimalField(decimal_places=2, max_digits=10, default=0.0)
     
+    class Meta:
+        managed = True
+        db_table = 'sacco_contribution'
+
     def __str__(self):
         return self.name    
 

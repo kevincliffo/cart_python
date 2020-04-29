@@ -1,4 +1,125 @@
 {% extends 'sacco/base.html' %}
 {% block content %}
-
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{% url 'sacco:dashboard' %}">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active">My Profile</li>
+    </ol>
+    <div class="card-body">
+        <center>
+            <h3>
+                {{ member.MemberNo }} - {{ member.FirstName }} {{ member.LastName }}
+            </h3>
+        </center>
+        <div class="form-group">
+            <div class="form-row">
+                
+                <div class="col-md-6">
+                    <div class="form-label-group">
+                        <input class ="form-control" type="text" name="memberId" 
+                            id="memberId" placeholder = "Member Id" required = "required" style="text-align: right;" 
+                            readonly="readonly" value="{{member.id}}"/>
+                        <label for="memberId">Member Id</label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-label-group">
+                        <input class ="form-control" type="text" name="memberNo" 
+                            id="memberNo" placeholder = "Member No" required = "required"
+                            readonly="readonly" value="{{member.MemberNo}}"/>
+                        <label for="memberNo">Member No</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-label-group">
+                <input class ="form-control" type="email" name="inputEmail" 
+                    id="inputEmail" placeholder = "Email" required = "required"
+                    readonly="readonly" value="{{member.Email}}"/>
+                <label for="inputEmail">Email</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <div class="form-label-group">
+                        <input class ="form-control" type="text" name="idNumber" 
+                            id="idNumber" placeholder = "ID Number" required = "required"
+                            readonly="readonly" value="{{member.IdNumber}}"/>
+                        <label for="idNumber">ID Number</label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-label-group">
+                        <input class ="form-control" type="text" name="mobileNumber" 
+                            id="mobileNumber" placeholder = "Mobile No." required = "required"
+                            readonly="readonly" value="{{member.MobileNo}}"/>
+                        <label for="mobileNumber">Mobile No.</label>
+                    </div>
+                </div>
+            </div>
+        </div>                        
+        <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <div class="form-label-group">
+                        <input class ="form-control" type="text" name="gender" 
+                            id="gender" placeholder = "Gender" required = "required"
+                            readonly="readonly" value="{{member.MemberGender}}"/>
+                        <label for="gender">Gender</label>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" border="0" cellpadding="0" id="dataTable" width="100%" cellspacing="0">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Key</th>
+                                <th scope="col">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Next of Kin Name</td>
+                                <td>{{ member.NextOfKinFullName }}</td>
+                            </tr>  		
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Next of Kin Mobile No</td>
+                                <td>{{ member.NextOfKinMobileNo }}</td>
+                            </tr> 
+                            <tr>
+                                <th scope="row">3</th>
+                                <td>Next of Kin Relationship</td>
+                                <td>{{ member.NextOfKinRelationship }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">4</th>
+                                <td>Total Monthly Contribution</td>
+                                <td style="text-align: right;">{{ member.TotalContribution}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">5</th>
+                                <td>Total Contribution Expected</td>
+                                <td style="text-align: right;">{{ member.totalamountexpected}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">6</th>
+                                <td>Balance</td>
+                                <td style="text-align: right;">{{ member.balance}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>                            
+        </div>
+        <div class="form-group">
+            <input type="submit" name="submit" value="Print" class="btn btn-primary btn-block"/>
+        </div>
+    </div>
 {% endblock %}

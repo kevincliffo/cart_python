@@ -1,0 +1,107 @@
+{% extends 'sacco/base.html' %}
+{% block content %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{% url 'sacco:dashboard' %}">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active">Add Member Contribution</li>
+    </ol>
+    <div class="card-body">
+        <form action="{% url 'sacco:add_contribution' %}" method="POST"  accept-charset="utf-8">
+            {% csrf_token %}
+            <input type="hidden" name="memberNo" id="memberNo" value="{{member.id}}">
+            <input type="hidden" name="firstName" id="firstName" value="{{member.FirstName}}">
+            <input type="hidden" name="lastName" id="lastName" value="{{member.LastName}}">
+            <center>
+                <h3>
+                    {{member.MemberNo}} - {{ member.FirstName}} {{ member.LastName}}
+                </h3>
+            </center>
+            <div class="form-group">
+                <div class="form-row">                
+                    <div class="col-md-6">
+                        <div class="form-label-group">
+                            <input class ="form-control" type="text" name="memberId" 
+                                id="memberId" placeholder = "Member Id" required = "required" style="text-align: right;" 
+                                readonly="readonly" value="{{member.id}}"/>
+                            <label for="memberId">Member Id</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-label-group">
+                            <input class ="form-control" type="text" name="memberType" 
+                                id="memberType" placeholder = "Member Type" required = "required" 
+                                readonly="readonly" value="{{member.MemberType}}"/>
+                            <label for="memberType">Member Type</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-label-group">
+                    <input class ="form-control" type="email" name="inputEmail" 
+                        id="inputEmail" placeholder = "Email address" required = "required" 
+                        readonly="readonly" value="{{member.Email}}"/>
+                    <label for="inputEmail">Email address</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div class="form-label-group">
+                            <input class ="form-control" type="number" name="idNumber" 
+                                id="idNumber" placeholder = "ID Number" required = "required" 
+                                readonly="readonly" value="{{member.IdNumber}}"/>
+                            <label for="idNumber">ID Number</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-label-group">
+                            <input class ="form-control" type="number" name="mobileNumber" 
+                                id="mobileNumber" placeholder = "Mobile No." required = "required" 
+                                readonly="readonly" value="{{member.MobileNo}}"/>
+                            <label for="mobileNumber">Mobile No.</label>
+                        </div>
+                    </div>
+                </div>
+            </div>                        
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div class="form-label-group">
+                            <input class ="form-control" type="text" name="paymentDate" 
+                                id="paymentDate" placeholder = "00.00.0000" required = "required"/>
+                            <label for="paymentDate">00.00.0000</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-label-group">
+                            <select name="paymentMonth" class="form-control" required>
+                                <option selected disabled>Select Payment Month</option>
+                                {% for month in months %}
+                                    <option value="{{month}}">{{month}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div class="form-label-group">
+                            <input class ="form-control" type="number" name="amount" 
+                                id="amount" placeholder = "0.00" required = "required" 
+                                readonly="readonly" value="300" style="text-align: right;"/>
+                            <label for="amount">0.00</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" name="submit" value="Make Contribution" class="btn btn-primary btn-block"/>
+            </div>        
+        </form>
+    </div>
+{% endblock %}

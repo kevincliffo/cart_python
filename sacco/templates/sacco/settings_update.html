@@ -1,0 +1,54 @@
+{% extends 'sacco/base.html' %}
+{% block content %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{% url 'sacco:dashboard' %}">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active">Update Settings</li>
+    </ol>
+    <div class="card-body">
+        <form action="{% url 'sacco:update_delete_setting' %}" method="POST"  accept-charset="utf-8">
+            {% csrf_token %}
+            <input type="hidden" name="setting_id" value="{{setting.id}}">
+            <div class="form-group">
+                <div class="form-row">                    
+                    <div class="col-md-6">
+                        <div class="form-label-group">
+                            <input class ="form-control" type="text" name="settingKey" 
+                                id="settingKey" placeholder = "Setting Key" readonly='readonly' value="{{setting.SettingKey}}" required = "required"/>
+                            <label for="settingKey">Setting Key</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-label-group">
+                            <input class ="form-control" type="text" name="settingName" 
+                                id="settingName" placeholder = "Setting Name" readonly='readonly' value="{{setting.SettingName}}" required = "required"/>
+                            <label for="settingName">Setting Name</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-label-group">
+                    <input class ="form-control" type="text" name="settingValue" 
+                        id="settingValue" placeholder = "Setting Value" value="{{setting.SettingValue}}" required = "required"/>
+                    <label for="settingValue">Setting Value</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-row">                    
+                    <div class="col-md-6">
+                        <div class="form-label-group">
+                            <input type="submit" name="update_setting" value="Update Setting" class="btn btn-primary btn-block"/>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-label-group">
+                            <input type="submit" name="delete_setting" value="Delete Setting" class="btn btn-primary btn-block"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
