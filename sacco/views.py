@@ -48,12 +48,20 @@ def dashboard(request):
 	return render(request, 'sacco/dashboard.html', context)
 
 def users(request):
-	context = {'userscount':4}
-	return render(request, 'sacco/users.html', context)
+    users = User.objects.all()
+    context = {'userscount':4, 'users':users}
+    return render(request, 'sacco/users.html', context)
 
 def add_users(request):
-	context = {}
-	return render(request, 'sacco/users_add.html', context)    
+    if request.method == 'POST':
+        User.objects.create(FirstName=str(request.POST.get('firstName')), LastName=str(request.POST.get('lastName')),
+                            Email=str(request.POST.get('email')), Password=str(request.POST.get('inputPassword')),
+                            IdNumber=str(request.POST.get('idNumber')), MobileNo=str(request.POST.get('mobileNumber')),
+                            LastLogin=datetime.datetime.now(), CreatedDate=datetime.datetime.now())
+        return redirect('sacco:add_users')
+
+    context = {}
+    return render(request, 'sacco/users_add.html', context)    
 
 def members(request):
     members = Member.objects.all()
